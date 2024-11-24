@@ -2,11 +2,11 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.css'
 import { csv, json } from "d3";
 import { Row, Col, Container } from "react-bootstrap";
-import { groupByAirline, groupByAirport } from "../components/assignment6/utils";
+import { groupByAirline, groupByAirport } from "../components/assignment 6/utils";
 import styles from "../styles/assignment5_styles.module.css";
-import { AirportMap }  from "../components/assignment6/airportMap";
-import { BarChart } from "../components/assignment6/barChart";
-import { AirportBubble} from "../components/assignment6/airportBubble";
+import { AirportMap }  from "../components/assignment 6/airportMap";
+import { BarChart } from "../components/assignment 6/barChart";
+import { AirportBubble} from "../components/assignment 6/airportBubble";
 
 
 const csvUrl = 'https://gist.githubusercontent.com/hogwild/9367e694e12bd2616205e4b3e91285d5/raw/9b451dd6bcc148c3553f550c92096a1a58e1e1e5/airline-routes.csv';
