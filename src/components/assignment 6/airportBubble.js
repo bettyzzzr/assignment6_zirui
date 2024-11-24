@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 function AirportBubble(props) {
     const { width, height, routes, selectedAirline } = props;
     const svgRef = useRef();
-
+    console.log(groupByCity(routes));
     useEffect(() => {
         if (!routes || routes.length === 0) {
             console.warn("No routes data available");
