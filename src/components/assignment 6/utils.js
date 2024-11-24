@@ -88,7 +88,6 @@ function groupByCity(data) {
     result = result.sort((a, b) => b.Count - a.Count); // Sort the data in descending order of count.
     return result;
 }
-console.log(groupByCity(data));
 
 export {
     groupByAirline, groupByAirport, groupByCity
