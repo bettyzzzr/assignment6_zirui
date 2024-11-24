@@ -9,8 +9,16 @@ export function BarChart (props) {
     const xScale = scaleLinear().range([0, width]).domain([0, maximunCount]).nice();
     const yScale = scaleBand().range([0, height]).domain(data.map(a => a.AirlineName)).padding(0.2) //The domain is the list of ailines names
     let color = (d) => d.AirlineID===selectedAirline? "#992a5b":"#2a5599";
-    let onMouseOver = (d) => setSelectedAirline(d.AirlineID);
-    let onMouseOut = () => setSelectedAirline('null');
+    
+    const handleBarClick = (airlineID) => {
+        if (highlightedBar === airlineID) {
+            setHighlightedBar(null);
+            setSelectedAirline(null);
+        } else {
+            setHighlightedBar(airlineID);
+            setSelectedAirline(airlineID);
+        }
+    };
     //TODO:
     //1.Change the mouse event in <rect/> to onClick;
     //2.Remove the onMouseOut in <rect />;
@@ -23,14 +31,20 @@ export function BarChart (props) {
     //  call setSelectedAirline(null);
     //4.Remove the onMouseOver and onMouseOut;
     
-    return <g transform={`translate(${offsetX}, ${offsetY})`}>
-        { data.map( d => {
-            return <rect key={d.AirlineID} x={0} y={yScale(d.AirlineName)}
-                width={xScale(d.Count)} height={yScale.bandwidth()} 
-                onMouseOver={()=>onMouseOver(d)} onMouseOut={onMouseOut}
-                stroke="black" fill={color(d)}/>
-        }) }
-        <YAxis yScale={yScale} height={height} offsetX={offsetX}/>
-        <XAxis xScale={xScale} width={width} height={height} />
+    return  (
+        <g transform={`translate(${offsetX}, ${offsetY})`}>
+            <XAxis xScale={xScale} height={height} />
+            <YAxis yScale={yScale} />
+            {data.map(d => (
+                <rect
+                    key={d.AirlineID}
+                    y={yScale(d.AirlineName)}
+                    width={xScale(d.Count)}
+                    height={yScale.bandwidth()}
+                    fill={highlightedBar === d.AirlineID ? "orange" : "steelblue"}
+                    onClick={() => handleBarClick(d.AirlineID)}
+                />
+            ))}
     </g>
+    );
 }
