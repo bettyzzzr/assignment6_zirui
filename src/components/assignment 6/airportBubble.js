@@ -2,6 +2,7 @@ import React from "react";
 import { groupByCity } from "./utils";
 import { forceSimulation, forceX, forceY, forceCollide, scaleLinear, min, max, select } from "d3";
 import { useRef } from 'react';
+import { useEffect } from 'react';
 
 
 function AirportBubble(props) {
